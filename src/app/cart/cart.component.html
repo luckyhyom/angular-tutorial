@@ -1,0 +1,28 @@
+<h3>Cart</h3>
+
+  <a routerLink="/shipping">Shipping Prices</a>
+
+
+<div class="cart-item" *ngFor="let item of items">
+  <span>{{ item.name }}</span>
+  <span>{{ item.price | currency }}</span>
+</div>
+
+<!-- form 프로퍼티를 이 컴포넌트에서 만들고 쓴다. -->
+<!-- spring에서 action프로퍼티 같은 역할..
+formGroup에 원하는 폼 프로퍼티를 바인딩해준다(서버에 바인딩 되어있는 폼인가), ngSubmit은 폼을 제출할때 발생되는 이벤트.. 원하는 함수를 바인딩 할 수 있다. -->
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+  <div>
+    <label for="name">Name</label>
+                                  <!-- 스프링에서 name프로퍼티 같은 역할.. formGroup에 바인딩 된 아이의 속성중에 name이란 속성이 있으면 바인딩된다.  -->
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="address">Address</label>
+    <input form="address" type="text">
+  </div>
+
+  <button class="button" type="submit">Purchace</button>
+
+</form>
